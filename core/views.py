@@ -1,8 +1,6 @@
-from datetime import datetime
-import re
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from datetime import datetime
 from core.models import LMEPriceTrend
 from django.db import connection
 
@@ -25,7 +23,7 @@ def insert_lme_price_trend(entry_date, data_source, item_type, stlmnt_price, ask
 
 def test(request):
     insert_lme_price_trend(
-        '30-FEB-25',  # ENTRY_DATE
+        '11-FEB-25',  # ENTRY_DATE
         'https://www.lme.com/',  # DATA_SOURCE
         'LME Aluminum',  # ITEM_TYPE
         2500.00,  # STLMNT_PRICE
