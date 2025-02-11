@@ -1,3 +1,4 @@
+from calendar import SUNDAY
 from datetime import datetime
 
 from bs4 import BeautifulSoup
@@ -79,25 +80,39 @@ def scrap_data_from_metal_market():
 
 
 def grab_data_from_metal_market():
-    copper_data = grab_metal_data("COPPER")
+    today = datetime.date.today()
+    MONDAY_CODE = 0
+    SUNDAY_CODE = 6
+    COPPER_CODE = "COPPER"
+    NICKEL_CODE = "NICKEL"
+    ZINC_CODE = "ZINC"
+    ALUMINUM_ALLOY_CODE = "A.ALLY"
+    COBALT_CODE = "COBALT"
+    LEAD_CODE = "LEAD"
+    ALUMINUM_CODE = "ALUM"
+    if today.weekday() == MONDAY_CODE or today.weekday() == SUNDAY_CODE:
+        print("LME dont update on Monday or Sunday")
+        return
+    
+    copper_data = grab_metal_data(COPPER_CODE)
     save_to_db(copper_data)
 
-    nickel_data = grab_metal_data("NICKEL")
+    nickel_data = grab_metal_data(NICKEL_CODE)
     save_to_db(nickel_data)
 
-    zinc_data = grab_metal_data("ZINC")
+    zinc_data = grab_metal_data(ZINC_CODE)
     save_to_db(zinc_data)
 
-    aluminum_alloy_data = grab_metal_data("A.ALLY")
+    aluminum_alloy_data = grab_metal_data(ALUMINUM_ALLOY_CODE)
     save_to_db(aluminum_alloy_data)
 
-    cobalt_data = grab_metal_data("COBALT")
+    cobalt_data = grab_metal_data(COBALT_CODE)
     save_to_db(cobalt_data)
 
-    lead_data = grab_metal_data("LEAD")
+    lead_data = grab_metal_data(LEAD_CODE)
     save_to_db(lead_data)
 
-    aluminum_data = grab_metal_data("ALUM")
+    aluminum_data = grab_metal_data(ALUMINUM_CODE)
     save_to_db(aluminum_data)
 
 
